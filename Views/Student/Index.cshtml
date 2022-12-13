@@ -1,0 +1,40 @@
+@model List<Student>
+@{
+    var students = Model;
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome Student Management</h1>
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Faculity</th>
+            <th>
+                <a href="/Student/Create" class="btn btn-primary">Create</a>
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var student in students)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    @if(@student.Gender)
+                    {
+                        <td>Male</td>
+                    }
+                    else
+                    {
+                        <td>Female</td>
+                    }
+                    <td>@student.Faculty.Name</td>
+                    <td>
+                        <a href="/Student/Update?id=@student.Id" class="btn btn-success">Update</a>
+                        <a href="/Student/Delete?id=@student.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
